@@ -8,13 +8,6 @@ class Scene():
     def __init__(self):
         self.border_width = 20
         self.cue = CueBall((300,500), c.white)
-        # self.balls = [self.cue, Ball((300,200),c.ball_color[0],),
-        #       Ball((277, 160), c.ball_color[1]), 
-        #       Ball((323, 160), c.ball_color[2]), 
-        #       Ball((254, 120), c.ball_color[3]), 
-        #       Ball((300, 120), c.ball_color[4]),
-        #       Ball((346, 120), c.ball_color[5])
-        #      ]
         self.balls = [self.cue, Ball((300,200),c.ball_color[0],),
               Ball((284, 168), c.ball_color[1]), 
               Ball((316, 168), c.ball_color[2]), 
@@ -42,14 +35,7 @@ class Scene():
                     pass
                 else:
                     collision (self.balls[i], self.balls[j])
-                # if i != j:
-                #     collision(self.balls[i], self.balls[j])
 
-        # for i in range(len(self.balls)):
-        #     for j in range(i + 1, len(self.balls)):  # Check each pair only once
-        #         collision(self.balls[i], self.balls[j])
-
-            
         for ball in self.balls:
             ball.velocity *= (1-ball.friction)
             if abs(ball.velocity.x) < c.minimum_velocity and abs(ball.velocity.y) < c.minimum_velocity:

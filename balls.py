@@ -3,7 +3,7 @@ from vector import Vector
 import constant as c 
 
 class Ball():
-    def __init__(self, center, color, friction = 0.02, bounce = 0.6, mass = 1):
+    def __init__(self, center, color, friction = 0.02, bounce = 0.7, mass = 1):
         self.center = Vector (center[0], center[1])
         self.color = color
         self.radius = 20
@@ -26,7 +26,7 @@ class CueBall(Ball):
     def display(self, screen):
         super().display(screen)
         if self.velocity == Vector(0,0):
-            self.display_cue(screen)
+            pygame.draw.circle(screen, c.red, (self.cue_pos.x, self.cue_pos.y), 5)
 
     def move_cue(self, angle):
         distance = self.cue_pos - self.center
@@ -36,11 +36,6 @@ class CueBall(Ball):
     def shoot (self, speed):
         direction = (self.center - self.cue_pos).normalize()
         self.velocity = direction * speed
-        # if abs(self.velocity.x) < c.minimum_velocity and abs(self.velocity.y) < c.minimum_velocity:
-        #     self.velocity = Vector(0, 0)
-
-    def display_cue(self, screen):
-        pygame.draw.circle(screen, c.red, (self.cue_pos.x, self.cue_pos.y), 5)
 
     def update_position(self,dt):
         super().update_position(dt)
